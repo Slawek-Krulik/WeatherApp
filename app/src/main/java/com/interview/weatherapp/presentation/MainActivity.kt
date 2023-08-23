@@ -1,17 +1,22 @@
 package com.interview.weatherapp.presentation
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.interview.weatherapp.R
+import com.interview.weatherapp.core.BaseActivity
+import com.interview.weatherapp.databinding.ActivityMainBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
+
 
     private val viewModel: WeatherViewModel by viewModel()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
+        binding.let {
+            it.lifecycleOwner = this@MainActivity
+            it.viewModel = viewModel
+        }
         viewModel.fetchWeather()
     }
+
 }

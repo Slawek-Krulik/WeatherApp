@@ -1,4 +1,4 @@
-package com.interview.weatherapp.presentation.base
+package com.interview.weatherapp.core
 
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LiveData
@@ -16,9 +16,7 @@ open class BaseViewModel(private val errorMapper: ErrorMapper) : ViewModel(),
         _message
     }
 
-    private val _uiState by lazy { MutableLiveData<UiState>(UiState.Idle) }
-
-    val uiState: LiveData<UiState> = _uiState
+    val _uiState by lazy { MutableLiveData<UiState>(UiState.Idle) }
 
     protected fun showMessage(it: String) {
         _message.value = it
