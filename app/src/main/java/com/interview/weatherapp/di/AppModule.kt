@@ -1,27 +1,23 @@
 package com.interview.weatherapp.di
 
-import com.interview.weatherapp.BuildConfig
-import com.interview.weatherapp.data.remote.WeatherApi
-import okhttp3.Interceptor
-import okhttp3.OkHttpClient
+import com.interview.weatherapp.data.exception.mapper.ErrorMapper
+import com.interview.weatherapp.data.exception.mapper.ErrorMapperImpl
+import com.interview.weatherapp.data.exception.wrapper.ErrorWrapper
+import com.interview.weatherapp.data.exception.wrapper.ErrorWrapperImpl
+import com.interview.weatherapp.data.repository.WeatherRepositoryImpl
+import com.interview.weatherapp.domain.weather.WeatherRepository
+import com.interview.weatherapp.presentation.WeatherViewModel
+import org.koin.android.ext.koin.androidContext
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 val appModule = module {
 
-    single {
-        OkHttpClient.Builder()
-            .addNetworkInterceptor(get<Interceptor>())
-            .build()
-    }
+    single<ErrorWrapper> { ErrorWrapperImpl() }
 
-    single {
-        Retrofit.Builder()
-            .baseUrl(BuildConfig.BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .client(get<OkHttpClient>())
-            .build()
-            .create(WeatherApi::class.java)
-    }
+    factory<ErrorMapper> { ErrorMapperImpl(androidContext()) }
+
+    factory<WeatherRepository> { WeatherRepositoryImpl(get(), get()) }
+
+    viewModel { WeatherViewModel(get(), get()) }
 }
