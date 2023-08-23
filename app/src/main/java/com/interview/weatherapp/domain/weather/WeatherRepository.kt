@@ -1,8 +1,9 @@
 package com.interview.weatherapp.domain.weather
 
-import com.interview.weatherapp.data.remote.dto.WeatherRemote
+import com.interview.weatherapp.domain.location.model.Location
+import com.interview.weatherapp.domain.weather.model.Weather
 
 interface WeatherRepository {
 
-    suspend fun getWeatherData(latitude: Double, longitude: Double): WeatherRemote
+    suspend fun getWeatherData(location: Location?): Weather
 }

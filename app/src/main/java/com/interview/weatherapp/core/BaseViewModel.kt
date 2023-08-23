@@ -16,18 +16,8 @@ open class BaseViewModel(private val errorMapper: ErrorMapper) : ViewModel(),
         _message
     }
 
-    val _uiState by lazy { MutableLiveData<UiState>(UiState.Idle) }
-
     protected fun showMessage(it: String) {
         _message.value = it
-    }
-
-    protected fun setIdleState() {
-        _uiState.value = UiState.Idle
-    }
-
-    protected fun setPendingState() {
-        _uiState.value = UiState.Pending
     }
 
     protected fun handleFailure(throwable: Throwable) {

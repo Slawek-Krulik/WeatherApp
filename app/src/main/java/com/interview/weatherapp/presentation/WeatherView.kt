@@ -1,9 +1,12 @@
 package com.interview.weatherapp.presentation
 
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.LiveData
 import com.interview.weatherapp.core.UiState
+import com.interview.weatherapp.domain.weather.model.Weather
 
 interface WeatherView {
 
-    val uiState: MutableLiveData<UiState?>
+    val uiState: LiveData<UiState?>
+
+    val data: LiveData<Weather?>
 }

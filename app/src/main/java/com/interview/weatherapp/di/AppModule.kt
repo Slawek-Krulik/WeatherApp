@@ -19,5 +19,5 @@ val appModule = module {
 
     factory<WeatherRepository> { WeatherRepositoryImpl(get(), get()) }
 
-    viewModel { WeatherViewModel(get(), get()) }
+    viewModel { WeatherViewModel(get(), get(), get()) }
 }
