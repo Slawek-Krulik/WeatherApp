@@ -26,6 +26,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
 
     private fun initObservers() {
         viewModel.message.observe(this) { showSnackbar(it) }
+        viewModel.data.observe(this) {  }
     }
 
 }

@@ -1,9 +1,9 @@
 package com.interview.weatherapp.domain.weather
 
 import com.interview.weatherapp.domain.location.model.Location
-import com.interview.weatherapp.domain.weather.model.Weather
+import com.interview.weatherapp.domain.weather.model.WeatherDay
 
 interface WeatherRepository {
 
-    suspend fun getWeatherData(location: Location?): Weather
+    suspend fun getWeatherData(location: Location?): List<WeatherDay?>
 }

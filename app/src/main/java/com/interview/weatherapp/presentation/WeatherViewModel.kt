@@ -8,7 +8,7 @@ import com.interview.weatherapp.core.UiState
 import com.interview.weatherapp.data.exception.mapper.ErrorMapper
 import com.interview.weatherapp.domain.location.LocationTracker
 import com.interview.weatherapp.domain.weather.WeatherRepository
-import com.interview.weatherapp.domain.weather.model.Weather
+import com.interview.weatherapp.domain.weather.model.WeatherDay
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -23,13 +23,13 @@ class WeatherViewModel(
     override val uiState: LiveData<UiState?> = _uiState
 
     private val _weather by lazy {
-        MutableLiveData<Weather>()
+        MutableLiveData<List<WeatherDay?>?>()
             .also { fetchWeather(it) }
     }
 
-    override val data: LiveData<Weather?> by lazy { _weather }
+    override val data: LiveData<List<WeatherDay?>?> by lazy { _weather }
 
-    private fun fetchWeather(weatherLiveData: MutableLiveData<Weather>) {
+    private fun fetchWeather(weatherLiveData: MutableLiveData<List<WeatherDay?>?>) {
         _uiState.value = UiState.Pending
         viewModelScope.launch {
             delay(2500)
