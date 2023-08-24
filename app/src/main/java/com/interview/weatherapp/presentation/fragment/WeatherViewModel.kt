@@ -7,5 +7,11 @@ import com.interview.weatherapp.domain.weather.model.Weather
 
 class WeatherViewModel : ViewModel(), WeatherView {
 
-    override val weather: LiveData<Weather?> = MutableLiveData()
+    private val _weather: MutableLiveData<Weather?> = MutableLiveData()
+
+    override val weather: LiveData<Weather?> = _weather
+
+    fun setData(data: Weather?) {
+        _weather.value = data
+    }
 }
