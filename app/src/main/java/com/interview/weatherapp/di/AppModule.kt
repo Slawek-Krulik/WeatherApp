@@ -9,6 +9,7 @@ import com.interview.weatherapp.domain.weather.DateConverter
 import com.interview.weatherapp.domain.weather.GetWeatherUseCase
 import com.interview.weatherapp.domain.weather.converter.DateConverterImpl
 import com.interview.weatherapp.domain.weather.repository.WeatherRepository
+import com.interview.weatherapp.presentation.fragment.WeatherAdapter
 import com.interview.weatherapp.presentation.main.MainViewModel
 import com.interview.weatherapp.presentation.fragment.WeatherViewModel
 import org.koin.android.ext.koin.androidContext
@@ -29,5 +30,7 @@ val appModule = module {
 
     factory { WeatherViewModel() }
 
+    factory { WeatherAdapter() }
+    
     viewModel { MainViewModel(get(), get(), get()) }
 }

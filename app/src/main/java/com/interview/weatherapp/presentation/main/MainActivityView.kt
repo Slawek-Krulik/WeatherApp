@@ -1,12 +1,12 @@
 package com.interview.weatherapp.presentation.main
 
 import androidx.lifecycle.LiveData
-import com.google.android.material.navigation.NavigationBarView
 import com.interview.weatherapp.core.UiState
+import com.interview.weatherapp.presentation.model.Weather
 
 interface MainActivityView {
 
     val uiState: LiveData<UiState?>
 
-    val onBottomNavClickListener: NavigationBarView.OnItemSelectedListener
+    val items: LiveData<List<Weather?>>
 }

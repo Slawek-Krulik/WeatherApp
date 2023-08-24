@@ -3,16 +3,12 @@ package com.interview.weatherapp.presentation.main
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.google.android.material.navigation.NavigationBarView
-import com.hadilq.liveevent.LiveEvent
-import com.interview.weatherapp.R
 import com.interview.weatherapp.core.BaseViewModel
 import com.interview.weatherapp.core.UiState
 import com.interview.weatherapp.data.exception.mapper.ErrorMapper
 import com.interview.weatherapp.domain.location.LocationTracker
 import com.interview.weatherapp.domain.weather.GetWeatherUseCase
 import com.interview.weatherapp.presentation.model.Weather
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class MainViewModel(
@@ -25,24 +21,14 @@ class MainViewModel(
 
     override val uiState: LiveData<UiState?> = _uiState
 
-    override val onBottomNavClickListener: NavigationBarView.OnItemSelectedListener =
-        NavigationBarView.OnItemSelectedListener {item ->
-            when(item.itemId) {
-                R.id.first_day -> startWeatherFragment(0)
-                R.id.second_day -> startWeatherFragment(1)
-                else -> startWeatherFragment(2)
-            }
-            true
-        }
-
-    private val _weather = MutableLiveData<List<Weather?>?>()
-
-    val startFragmentEvent: LiveEvent<Weather?> = LiveEvent()
-    init {
-        fetchData()
+    private val _weather by lazy {
+        MutableLiveData<List<Weather?>>()
+            .also { fetchData(it) }
     }
 
-    private fun fetchData() {
+    override val items: LiveData<List<Weather?>> by lazy { _weather }
+
+    private fun fetchData(mutableData: MutableLiveData<List<Weather?>>) {
         _uiState.value = UiState.Pending
         viewModelScope.launch {
             locationTracker.getCurrentLocation()?.also { location ->
@@ -51,8 +37,7 @@ class MainViewModel(
                     scope = viewModelScope
                 ) { result ->
                     result.onSuccess {
-                        _weather.value = it
-                        startWeatherFragment(0)
+                        mutableData.value = it
                     }
                     result.onFailure { handleFailure(it) }
                     _uiState.value = UiState.Idle
@@ -60,11 +45,4 @@ class MainViewModel(
             }
         }
     }
-
-    private fun startWeatherFragment(index: Int) {
-        _weather.value?.takeIf { it.isNotEmpty() && it.size > index}?.also {
-            startFragmentEvent.value = it[index]
-        }
-    }
-
 }
