@@ -3,15 +3,11 @@
 
     <data>
 
-        <import type="android.view.View" />
-
-        <import type="com.interview.weatherapp.core.UiState" />
-
-        <import type="com.interview.weatherapp.presentation.WeatherView" />
+        <import type="com.interview.weatherapp.presentation.MainActivityView" />
 
         <variable
             name="viewModel"
-            type="WeatherView" />
+            type="MainActivityView" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -21,34 +17,23 @@
         android:layout_height="match_parent"
         tools:context=".presentation.MainActivity">
 
-        <TextView
-            android:id="@+id/humidity"
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@id/bottom_nav" />
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_nav"
+            onBottomNavListener="@{viewModel.onBottomNavClickListener}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            tools:text="Humidity"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/humidity"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            tools:text="temperature"/>
-
-
-        <ProgressBar
-            android:id="@+id/indicator"
-            uistate="@{viewModel.uiState}"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
+            android:background="?android:attr/windowBackground"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:menu="@menu/bottom_nav_menu" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </layout>

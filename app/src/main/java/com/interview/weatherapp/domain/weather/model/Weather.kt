@@ -4,8 +4,8 @@ import com.interview.weatherapp.presentation.model.Icon
 
 data class Weather(
     val date: String? = "",
-    val temperature: Double?,
-    val humidity: Double?,
+    val temperature: String?,
+    val humidity: String?,
     val icon: Icon?
 ) {
     constructor(weather: Weather?) : this(

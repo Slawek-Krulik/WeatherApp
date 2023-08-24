@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/first_day"
+        android:icon="@drawable/common_full_open_on_phone"
+        android:title="@string/first_day" />
+    <item
+        android:id="@+id/second_day"
+        android:icon="@drawable/common_full_open_on_phone"
+        android:title="@string/second_day" />
+    <item
+        android:id="@+id/third_day"
+        android:icon="@drawable/common_full_open_on_phone"
+        android:title="@string/third_day" />
+
+</menu>

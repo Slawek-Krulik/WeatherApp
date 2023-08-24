@@ -26,8 +26,8 @@ data class Day(
     val uv: Double
 ) {
     fun toWeather() = Weather(
-        temperature = avgtemp_c,
-        humidity = avghumidity,
+        temperature = avgtemp_c.toString(),
+        humidity = avghumidity.toString(),
         icon = Icon(text = condition.text, url = condition.icon)
     )
 }
