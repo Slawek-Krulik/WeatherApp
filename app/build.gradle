@@ -1,7 +1,11 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id "kotlin-parcelize"
 }
+
+apply from: "../dependencies.gradle"
 
 android {
     namespace 'com.interview.weatherapp'
@@ -21,23 +25,58 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            buildConfigField "String", "BASE_URL", "\"http://api.weatherapi.com/v1/\""
+            buildConfigField "String", "API_KEY", "\"${NEWS_API_KEY_RELEASE}\""
+        }
+        debug {
+            applicationIdSuffix '.debug'
+
+            buildConfigField "String", "BASE_URL", "\"http://api.weatherapi.com/v1/\""
+            buildConfigField "String", "API_KEY", "\"${NEWS_API_KEY_DEBUG}\""
         }
     }
+
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_18
+        targetCompatibility = JavaVersion.VERSION_18
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '18'
+    }
+    buildFeatures {
+        buildConfig = true
+    }
+    buildFeatures {
+        viewBinding true
+        dataBinding true
     }
 }
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.9.0'
-    implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.9.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    //core dependencies
+    implementation coreDependencies.values()
+
+    //ui dependencies
+    implementation uiDependencies.values()
+
+    //di dependencies
+    implementation diDependencies.values()
+
+    //coroutines dependencies
+    implementation coroutinesDependencies.values()
+
+    //lifecycle dependencies
+    implementation lifecycleDependencies.values()
+
+    //network dependencies
+    implementation networkDependencies.values()
+
+    //location dependencies
+    implementation locationDependencies.values()
+
+    //Unit test
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
