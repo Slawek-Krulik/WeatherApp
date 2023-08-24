@@ -5,5 +5,5 @@ import com.interview.weatherapp.domain.weather.model.WeatherDay
 
 interface WeatherRepository {
 
-    suspend fun getWeatherData(location: Location?): List<WeatherDay?>
+    suspend fun getWeatherData(location: Location?, days: Int): List<WeatherDay?>
 }

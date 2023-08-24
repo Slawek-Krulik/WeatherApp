@@ -1,4 +1,4 @@
-package com.interview.weatherapp.data.remote.dto
+package com.interview.weatherapp.data.remote.model
 
 data class Condition(
     val code: Int,

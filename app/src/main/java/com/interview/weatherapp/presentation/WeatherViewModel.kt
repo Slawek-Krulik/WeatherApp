@@ -9,7 +9,6 @@ import com.interview.weatherapp.data.exception.mapper.ErrorMapper
 import com.interview.weatherapp.domain.location.LocationTracker
 import com.interview.weatherapp.domain.weather.WeatherRepository
 import com.interview.weatherapp.domain.weather.model.WeatherDay
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class WeatherViewModel(
@@ -32,10 +31,9 @@ class WeatherViewModel(
     private fun fetchWeather(weatherLiveData: MutableLiveData<List<WeatherDay?>?>) {
         _uiState.value = UiState.Pending
         viewModelScope.launch {
-            delay(2500)
             kotlin.runCatching {
                 val currentLocation = locationTracker.getCurrentLocation()
-                if (currentLocation != null) repository.getWeatherData(currentLocation) else null
+                if (currentLocation != null) repository.getWeatherData(currentLocation, 3) else null
             }.onSuccess {
                 weatherLiveData.value = it
             }.onFailure {

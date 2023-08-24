@@ -1,4 +1,4 @@
-package com.interview.weatherapp.data.remote.dto
+package com.interview.weatherapp.data.remote.model
 
 import com.interview.weatherapp.domain.weather.model.WeatherDay
 import com.interview.weatherapp.presentation.model.Icon
@@ -27,10 +27,9 @@ data class Day(
 ) {
     fun toWeather() = WeatherDay(
         minTemperature = mintemp_c,
-        maxTemperature = maxtemp_c,
-        avgTemperature = avgtemp_c,
-        avgHumidity = avghumidity,
-        icon = Icon(text = condition.text, url = condition.icon)
+                maxTemperature = maxtemp_c,
+                avgTemperature = avgtemp_c,
+                avgHumidity = avghumidity,
+                icon = Icon(text = condition.text, url = condition.icon)
     )
-
 }

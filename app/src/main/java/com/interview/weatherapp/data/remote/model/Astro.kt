@@ -1,4 +1,4 @@
-package com.interview.weatherapp.data.remote.dto
+package com.interview.weatherapp.data.remote.model
 
 data class Astro(
     val is_moon_up: Int,

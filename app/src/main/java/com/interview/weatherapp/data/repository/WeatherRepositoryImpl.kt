@@ -10,16 +10,16 @@ import com.interview.weatherapp.domain.weather.model.WeatherDay
 
 class WeatherRepositoryImpl(
     private val api: WeatherApi,
-    private val errorWrapper: ErrorWrapper,
-    private val dataFormatterValidator: DataFormatterValidator
+    private val errorWrapper: ErrorWrapper
 ) : WeatherRepository {
-    override suspend fun getWeatherData(location: Location?): List<WeatherDay?>  {
+    override suspend fun getWeatherData(location: Location?, days: Int): List<WeatherDay?>  {
 
         return callOrThrow(errorWrapper) {
-            api.getWeatherData("${location?.latitude},${location?.longitude}")
-                .forecast.forecastDay
-                ?.filter { dataFormatterValidator.isDateOnlyFormat(it?.date) }
-                ?.map { it?.day?.toWeather() } ?: emptyList()
+            api.getWeatherData(
+                coordinates = "${location?.latitude},${location?.longitude}",
+                days = days)
+                .forecast?.forecastday
+                ?.map { it.day?.toWeather() } ?: emptyList()
         }
     }
 }

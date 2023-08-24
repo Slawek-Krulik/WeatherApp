@@ -19,9 +19,7 @@ val appModule = module {
 
     factory <ErrorMapper> { ErrorMapperImpl(androidContext()) }
 
-    factory <DataFormatterValidator> { DataFormatterValidatorImpl() }
-
-    single <WeatherRepository> { WeatherRepositoryImpl(get(), get(), get()) }
+    single <WeatherRepository> { WeatherRepositoryImpl(get(), get()) }
 
     viewModel { WeatherViewModel(get(), get(), get()) }
 }
