@@ -1,6 +1,6 @@
 package com.interview.weatherapp.data.remote.model
 
-import com.interview.weatherapp.domain.weather.model.WeatherDay
+import com.interview.weatherapp.domain.weather.model.Weather
 import com.interview.weatherapp.presentation.model.Icon
 
 data class Day(
@@ -25,11 +25,9 @@ data class Day(
     val totalsnow_cm: Double,
     val uv: Double
 ) {
-    fun toWeather() = WeatherDay(
-        minTemperature = mintemp_c,
-                maxTemperature = maxtemp_c,
-                avgTemperature = avgtemp_c,
-                avgHumidity = avghumidity,
-                icon = Icon(text = condition.text, url = condition.icon)
+    fun toWeather() = Weather(
+        temperature = avgtemp_c,
+        humidity = avghumidity,
+        icon = Icon(text = condition.text, url = condition.icon)
     )
 }

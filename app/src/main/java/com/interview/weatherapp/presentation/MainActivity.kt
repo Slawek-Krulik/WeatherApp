@@ -1,7 +1,6 @@
 package com.interview.weatherapp.presentation
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import com.interview.weatherapp.core.BaseActivity
 import com.interview.weatherapp.databinding.ActivityMainBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -26,7 +25,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
 
     private fun initObservers() {
         viewModel.message.observe(this) { showSnackbar(it) }
-        viewModel.data.observe(this) {  }
+        viewModel.weather.observe(this) {  }
     }
 
 }
