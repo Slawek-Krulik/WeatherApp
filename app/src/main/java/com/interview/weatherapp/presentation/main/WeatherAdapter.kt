@@ -1,4 +1,4 @@
-package com.interview.weatherapp.presentation.fragment
+package com.interview.weatherapp.presentation.main
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
