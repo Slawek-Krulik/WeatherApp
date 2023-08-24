@@ -4,7 +4,7 @@ import com.interview.weatherapp.data.exception.wrapper.ErrorWrapper
 import com.interview.weatherapp.data.exception.wrapper.callOrThrow
 import com.interview.weatherapp.data.remote.WeatherApi
 import com.interview.weatherapp.domain.location.model.Location
-import com.interview.weatherapp.domain.weather.model.Weather
+import com.interview.weatherapp.presentation.model.Weather
 import com.interview.weatherapp.domain.weather.repository.WeatherRepository
 
 class WeatherRepositoryImpl(

@@ -1,7 +1,6 @@
-package com.interview.weatherapp.domain.weather.model
+package com.interview.weatherapp.presentation.model
 
 import android.os.Parcelable
-import com.interview.weatherapp.presentation.model.Icon
 import kotlinx.parcelize.Parcelize
 
 @Parcelize

@@ -1,6 +1,6 @@
 package com.interview.weatherapp.data.remote.model
 
-import com.interview.weatherapp.domain.weather.model.Weather
+import com.interview.weatherapp.presentation.model.Weather
 import com.interview.weatherapp.presentation.model.Icon
 
 data class Day(

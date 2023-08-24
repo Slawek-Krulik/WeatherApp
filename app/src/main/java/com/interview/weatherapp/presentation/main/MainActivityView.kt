@@ -1,4 +1,4 @@
-package com.interview.weatherapp.presentation
+package com.interview.weatherapp.presentation.main
 
 import androidx.lifecycle.LiveData
 import com.google.android.material.navigation.NavigationBarView

@@ -3,11 +3,11 @@
 
     <data>
 
-        <import type="com.interview.weatherapp.presentation.MainActivityView" />
+        <import type="com.interview.weatherapp.presentation.main.MainActivityView" />
 
         <variable
             name="viewModel"
-            type="MainActivityView" />
+            type="com.interview.weatherapp.presentation.main.MainActivityView" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -15,7 +15,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation.MainActivity">
+        tools:context=".presentation.main.MainActivity">
 
         <FrameLayout
             android:id="@+id/fragment_container"
@@ -34,6 +34,15 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:menu="@menu/bottom_nav_menu" />
+
+        <ProgressBar
+            uistate="@{viewModel.uiState}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

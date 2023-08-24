@@ -1,4 +1,4 @@
-package com.interview.weatherapp.presentation
+package com.interview.weatherapp.presentation.main
 
 import android.os.Bundle
 import androidx.core.os.bundleOf

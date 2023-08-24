@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import com.interview.weatherapp.R
 import com.interview.weatherapp.core.BindingFragment
 import com.interview.weatherapp.databinding.WeatherFragmentBinding
-import com.interview.weatherapp.domain.weather.model.Weather
+import com.interview.weatherapp.presentation.model.Weather
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 const val WEATHER_EXTRA = "weather_extra"
